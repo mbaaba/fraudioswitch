@@ -1,8 +1,4 @@
-def web_page(led):
-    if led.value() == 1:
-        gpio_state = "LED is ON"
-    else:
-        gpio_state = "LED is OFF"
+def web_page(pin):
 
     html = """
     <html><head> 
@@ -18,9 +14,11 @@ def web_page(led):
         </style></head>
     <body> 
         <h1>ESP Web Server</h1> 
-        <p>GPIO state: <strong>""" + gpio_state + """</strong></p>
-        <p><a href="/?led=on"><button class="button">ON</button></a></p>
-        <p><a href="/?led=off"><button class="button button2">OFF</button></a></p>
+        <p>Pin <strong>""" + pin + """</strong> is active</p>
+        <p><a href="/?led=1"><button class="button">LED 1</button></a></p>
+        <p><a href="/?led=2"><button class="button">LED 2</button></a></p>
+        <p><a href="/?led=3"><button class="button">LED 3</button></a></p>
+        <p><a href="/?led=4"><button class="button">LED 4</button></a></p>
     </body>
     </html>"""
     return html
