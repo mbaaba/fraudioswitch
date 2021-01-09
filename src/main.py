@@ -1,8 +1,7 @@
-from board import PIN_19, PIN_21, PIN_22, PIN_23
-from http_server import init_server, run_server
-from web_site import web_page
+from internet.http_server import init_server, run_server
+from controller.operator import watch_web
 
-s = init_server()
-pins = [PIN_19, PIN_21, PIN_22, PIN_23]
+init_server()
+
 while True:
-    run_server(s, pins, web_page)
+    run_server(watch_web)

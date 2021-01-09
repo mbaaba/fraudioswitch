@@ -8,14 +8,14 @@ gc.collect()
 
 from secret import ssid, password
 
-station = network.WLAN(network.STA_IF)
+wl = network.WLAN(network.STA_IF)
 
-station.active(True)
-station.connect(ssid, password)
+wl.active(True)
+wl.connect(ssid, password)
 
-while station.isconnected() == False:
+while wl.isconnected() == False:
   pass
 
 print('Connection successful')
-print(station.ifconfig())
+print(wl.ifconfig())
 
