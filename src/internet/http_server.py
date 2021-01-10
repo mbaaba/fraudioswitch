@@ -14,28 +14,13 @@ def init_server():
     connected_socket.listen(5)
 
 
-#def _led_response(request, leds):
-    # led_1 = request.find('/?led=1') == 6
-    # led_2 = request.find('/?led=2') == 6
-    # led_3 = request.find('/?led=3') == 6
-    # led_4 = request.find('/?led=4') == 6
-    #
-    # leds[0].value(led_1)
-    # leds[1].value(led_2)
-    # leds[2].value(led_3)
-    # leds[3].value(led_4)
-    #
-    # response = web_page("1")
-    # return response
-
-
-def _dispatch(request):
-    response = web_page("1")
+def _dispatch(request, web_watch):
+    response = web_page("0")
     print('Content ={}'.format(request))
     is_led = request.find('/?led') == 6
 
     if is_led:
-        response = web_page("1")
+        response = web_page(str(web_watch(request)))
 
     return response
 
@@ -43,9 +28,7 @@ def _dispatch(request):
 def run_server(web_watch):
     conn, addr = connected_socket.accept()
     request = str(conn.recv(1024))
-    web_watch(request)
-
-    response = _dispatch(request)
+    response = _dispatch(request, web_watch)
     conn.send('HTTP/1.1 200 OK\n')
     conn.send('Content-Type: text/html\n')
     conn.send('Connection: close\n\n')

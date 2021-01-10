@@ -4,4 +4,4 @@ from controller.operator import watch_web
 init_server()
 
 while True:
-    run_server(watch_web)
+    run_server(watch_web())

@@ -1,19 +1,16 @@
 from switch.switch import Switch
+from controller.web_watcher import watch as web_watch
 
-mySwitch = Switch()
+audio_switch = Switch()
 
 
-def watch_web(request):
-    line_1 = request.find('/?led=1') == 6
-    line_2 = request.find('/?led=2') == 6
-    line_3 = request.find('/?led=3') == 6
+def watch_web():
+    def f(request):
+        return web_watch(request, dispatch_web)
 
-    if line_1:
-        mySwitch.activate(1)
-    elif line_2:
-        mySwitch.activate(2)
-    elif line_3:
-        mySwitch.activate(3)
-    else:
-        mySwitch.activate(0)
+    return f
 
+
+def dispatch_web(web_event):
+    audio_switch.activate(web_event.get_line())
+    return audio_switch.get_active_line()
