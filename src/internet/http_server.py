@@ -15,11 +15,11 @@ def init_server():
 
 
 def _dispatch(request, web_watch):
-    response = web_page("0")
+    response = web_page("???")
     print('Content ={}'.format(request))
-    is_led = request.find('/?led') == 6
+    is_line = request.find('/?line') == 6
 
-    if is_led:
+    if is_line:
         response = web_page(str(web_watch(request)))
 
     return response

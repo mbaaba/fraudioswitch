@@ -20,8 +20,8 @@ class Pin:
     def off(self):
         self._board_pin.value(0)
 
-    def value(self):
-        return self._board_pin.value(None)
+    def value(self, x=None):
+        return self._board_pin.value(x)
 
     def irq(self, handler):
         self._board_pin.irq(handler)

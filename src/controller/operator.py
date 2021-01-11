@@ -11,6 +11,6 @@ def watch_web():
     return f
 
 
-def dispatch_web(web_event):
-    audio_switch.activate(web_event.get_line())
+def dispatch_web(line):
+    audio_switch.activate(line)
     return audio_switch.get_active_line()
